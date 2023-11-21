@@ -6,8 +6,36 @@ class Tienda:
         self.producto3=producto3
         self.producto4=producto4
     
-    def mostrar_producto(self):
+    def mostrar_productos(self):
         print(self.producto1)
         print(self.producto2)
         print(self.producto3)
         print(self.producto4)
+
+    def consultar_producto(self,producto):
+        if self.producto1.nombre==producto:
+            return self.producto1
+        elif self.producto2.nombre==producto:
+                    return self.producto2
+        elif self.producto3.nombre==producto:
+                    return self.producto3
+        elif self.producto4.nombre==producto:
+                    return self.producto4
+        else:
+               return None
+    
+    def mostrar_producto(self,producto):
+        if self.producto1.nombre==producto:
+           print(self.producto1)
+        elif self.producto2.nombre==producto:
+           print(self.producto2)
+        elif self.producto3.nombre==producto:
+           print(self.producto3)
+        elif self.producto4.nombre==producto:
+           print(self.producto4)   
+
+    def realizar_venta(self,producto,cantidad):
+          if self.producto1.nombre==producto:
+                self.producto1.cant_bodega=self.producto1.cant_bodega-cantidad
+                self.producto1.cant_vendida+=cantidad
+                venta=self.producto1.v_unitario*cantidad
