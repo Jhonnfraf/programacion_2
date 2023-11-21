@@ -27,10 +27,28 @@ def menu_ventas():
 
 #DEFS OPCIONES MENU VENTAS
 
-def realizar_venta():
-    print ("Seleccione el item")
-    print (producto.producto1)
-
+def realizar_venta(tienda):
+    tienda.mostrar_producto()
+    producto=input("Digitar producto: ")
+    productoal=tienda.consultar_producto(producto)
+    if productoal!=None:
+        tienda.mostrar_producto(producto)
+        cantidad=int(input("Digitar cantidad: "))
+        if productoal.cantidad_bodega>cantidad:
+            cantidadv=cantidad
+        elif productoal.cantidad_bodega>0:
+            cantidadv=productoal.cantidad_bodega
+        else:
+            print("No hay productos a la venta")
+            return
+        tienda.realizar_venta(producto,cantidadv)
+        valor_venta=productoal.v_unitario*cantidadv
+        print(f"Cantidad{cantidadv} \n Valor unitario es: {productoal.v_unitario} \n valor venta: {valor_venta}")
+        tienda.dinero_caja=tienda.dinero_caja+valor_venta
+    else:
+        print("El producto no existe")
+        return
+    
 def mostrar_venta():
     print
 
@@ -42,7 +60,7 @@ def menu_pedidos():
         os.system("cls")
         print("   MENU VENTAS   ")
         print("   --------------------")
-        print("   1.Determinar pedido")
+        print("   1.Determinar pedido")         #con pedir se refiere a llenar inventario de nuevo
         print("   2.Realizar pedido")
         print("   3.Salir")
         o=int(input("Ingrese una opcion"))
@@ -110,7 +128,7 @@ def main():
                     os.system("pause")
             case 2:
                 if creado==True:
-                    tienda.mostrar_producto()
+                    tienda.mostrar_productos()
                     os.system("pause")
                 else: 
                     print("No hay productos")
@@ -149,5 +167,6 @@ def crear_tienda():
     producto4=producto("Arroz",3,5000,50,2,0)
     tienda1=Tienda(producto1,producto2,producto3,producto4)
     return tienda1 #retorna direccion, ya que es un objeto
+    print("se ha creado tienda con 4 productos")
 
 main()
