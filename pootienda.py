@@ -14,7 +14,7 @@ def menu_ventas():
         o=int(input("Ingrese una opcion"))
         match o:
             case 1:
-                realizar_venta()
+                realizar_venta(Tienda)
             case 2:
                 mostrar_venta()
             case 3:
@@ -165,8 +165,8 @@ def crear_tienda():
     producto2=producto("Cuaderno",1,3000,50,5,0)
     producto3=producto("Aspirina",2,1000,50,3,0)
     producto4=producto("Arroz",3,5000,50,2,0)
-    tienda1=Tienda(producto1,producto2,producto3,producto4)
-    return tienda1 #retorna direccion, ya que es un objeto
+    tienda=Tienda(producto1,producto2,producto3,producto4)
+    return tienda #retorna direccion, ya que es un objeto
     print("se ha creado tienda con 4 productos")
 
 main()
